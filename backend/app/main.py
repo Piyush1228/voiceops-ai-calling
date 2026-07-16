@@ -6,6 +6,7 @@ from app.modules.auth.router import router as auth_router
 from app.modules.users.router import router as users_router
 from app.modules.contacts.router import router as contacts_router
 from app.modules.calls.router import router as calls_router
+from app.modules.calls.webhooks import router as twilio_webhooks_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -26,6 +27,7 @@ app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(contacts_router)
 app.include_router(calls_router)
+app.include_router(twilio_webhooks_router)
 
 
 @app.get("/health")
