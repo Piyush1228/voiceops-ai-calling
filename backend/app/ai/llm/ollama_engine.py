@@ -10,16 +10,12 @@ SYSTEM_PROMPT = (
 )
 
 
-def generate_response(user_text: str) -> str:
+def generate_response(conversation_messages: list[dict]) -> str:
     """
-    Sends the caller's transcribed speech to the local LLM
-    and returns a short, spoken-style reply.
+    Sends the full conversation history (system prompt + all turns so far)
+    to the local LLM and returns a short, spoken-style reply.
     """
-    result = ollama.chat(
-        model=MODEL_NAME,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_text},
-        ],
-    )
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}] + conversation_messages
+
+    result = ollama.chat(model=MODEL_NAME, messages=messages)
     return result["message"]["content"].strip()

@@ -15,6 +15,7 @@ from app.database import Base
 from app.modules.users.models import Role, User # noqa
 from app.modules.contacts.models import Contact  # noqa
 from app.modules.calls.models import Call  # noqa
+from app.modules.calls.transcript_models import Transcript  # noqa
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
